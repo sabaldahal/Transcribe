@@ -9,7 +9,7 @@ APP_NAME = "eel proto"
 #sys.path.insert(1, '../../')
 
 
-eel.init('src', allowed_extensions=['.js', '.html'])
+eel.init('./static', allowed_extensions=['.js', '.html'])
 
 #eel.start('index.html')
 eel.start('index.html')   # Start (this blocks and enters loop)
