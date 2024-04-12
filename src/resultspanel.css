@@ -1,0 +1,228 @@
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background-color: rgb(209, 209, 209);
+    color: #000;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    z-index: 999;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+    }
+  }
+
+
+.audio-player-panel{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
+  z-index: 99;
+}
+
+#export-btn{
+  margin: 8px;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#export-btn:hover {
+  opacity: 0.8;
+}
+
+.threshold-value-change{
+  padding-top: 8px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  #threshold-conf-val{
+    padding: 8px;
+  }
+
+  #submit-threshold-value{
+    padding: 8px;
+    cursor: pointer;
+    background-color: #2c682e;
+    color: #fff;
+
+  }
+}
+
+
+
+
+
+/*table*/
+
+
+
+table{
+  width:100%;
+  margin: auto;
+  table-layout: fixed;
+  tr{
+    width: 100%;
+  }
+  th,td{
+    box-sizing:border-box;
+    padding: 15px;
+  }
+  td{
+    border: 1px solid transparent;
+  }
+  td[cententeditable="true"]{
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  td[contenteditable="true"]:focus {
+    border: 1px solid rgb(4, 108, 236);
+    border-radius: 5px;
+  }
+  .confidence-column, .audio-column, .controls-column{
+    width : 150px;
+  }
+  thead{
+    th{
+      background: #242424;
+      color: #ffffff;
+      text-align: left;
+    }
+  }
+
+  tbody{
+    text-align: left;
+    th{
+      background: #eee;
+    }
+  }
+}
+
+.data-more-context{
+  display: block;
+  float: right;
+
+  i::before{
+    font-size: 22px;
+    position: relative;
+    width:12px;
+    height:12px;
+    padding: 4px;
+    margin: 2px;
+  }
+  #data-show-segment{
+    position: relative;
+
+
+    .popuptext {
+      visibility: hidden;
+      width: 260px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      font-family: sans-serif;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 120;
+      bottom: 125%;
+      right: 50%;
+      margin-left: -80px;
+    }
+
+    .popuptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+    .show {
+      visibility: visible;
+    }
+  }
+
+  
+}
+
+
+
+
+
+@media only screen and (max-width:420px){
+
+  table{
+    tr{
+      display: block;
+      width: 100%;
+    }
+     thead{
+      display: none;
+    }
+    tbody{
+    display: block;
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+      th{
+        list-style:none;
+      }
+      td{
+        margin-left: 40px;
+      }
+      th,td{
+        width: 100%;
+        display: list-item;
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+:root {
+    --radius: 15px;
+    --light: #F9EEF6;
+    --green: #79eca9;
+    --dark: #8B7285;
+    --blue: #4B8AF3;
+    --transition: all 200ms cubic-bezier(0.74, 0.01, 0.39, 0.96);
+  }
+  
+  .music__container {
+    margin: 0;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+  
+  .music__title {
+    color: rgb(0, 68, 85);
+    background-color: rgb(220, 220, 223);
+    padding: 16px;;
+    width: 100%;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  
+  .music__player {
+    background-color: var(--light);
+    box-shadow: 0px 4px 4px var(--dark);
+    border-radius: 6px;
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    position: relative;
+    transition: var(--transition);
+  }
+  
+  
+  .action {
+    color: var(--blue);
+    background-color: transparent;
+    font-size: 3rem;
+    place-items: center;
+    cursor: pointer;
+  }
+  
+  .action:is(:hover) {
+    color: var(--green);
+    outline: none;
+    transition: var(--transition);
+  }
+  
+  .music__player--progress {
+    position: relative;
+    height: 30px;
+    width: 100%;
+    background-color: var(--blue);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+    margin: 8px 0;
+  }
+  
+  .music__player.playing .music__player--progress {
+    transform: translateY(0);
+    width: 100%;
+  }
+
+  .music__player.playing .action{
+    color: var(--dark);
+  }
+
+  .music__player.playing .action:hover{
+    color: var(--green);
+    outline: none;
+    transition: var(--transition);
+  }
+  
+  .progress {
+    position: absolute;
+    background-color: var(--green);
+    width: 0%;
+    height: 100%;
+    cursor: pointer;
+  }
+  

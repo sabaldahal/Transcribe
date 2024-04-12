@@ -1,0 +1,48 @@
+<div class="audio-player-panel">
+  <div class="music__container">
+    <audio id="audio"></audio>
+    <h2 class="music__title">Audio Title</h2>
+    <div class="music__player">
+      <div class="music__player--progress">
+        <div class="progress"></div>
+      </div>
+      <button id="play" class="action">
+        <i class="fa-solid fa-circle-play"></i>
+      </button>
+      <small style="float: left; position: relative; left: 15px;" class="start-time">0:00</small>
+      <small style="float: right; position: relative; right: 20px;" class="end-time">0:00</small>
+    </div>
+  </div>
+  <div class="threshold-value-change">
+    <form id="threshold-value-change--form">
+      <label for="threshold-conf-val">Threshold Confidence Value:</label>
+      <input type="number" id="threshold-conf-val" name="threshold-conf-val" min="0" max="1" value="0.65" step="0.05">
+      <input type="submit" id="submit-threshold-value" value="Reload Table">
+    </form>
+  </div>
+</div>
+
+<div id="data-editor-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="confidence-column">Confidence</th>
+        <th class="audio-column">Audio</th>
+        <th>Word</th>
+        <th class="controls-column">Controls</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--
+      <tr>
+        <td>Audio Here</td>
+        <td>Val%</td>
+        <td contenteditable="true">Some word</td>
+      </tr>
+    -->
+    </tbody>
+  </table>
+</div>
+
+<button id="export-btn" class="btn btn-primary">Export Data</button>
+</div>

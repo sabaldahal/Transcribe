@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="/eel.js"></script>
+        <link rel="stylesheet" href="style.css"></link>
+        <link rel="stylesheet" href="importlist.css"></link>
+        <link rel="stylesheet" href="resultspanel.css"></link>
+        <link rel="stylesheet" href="audioplayer.css"></link>
+        <title>Transcribe</title>
+    </head>
+    <body>
+        <div class="popup-container">
+            <div class="popup">
+                <div class="popup-header">
+                    <span>Unsaved Changes</span>
+                    <button class="close-button">×</button>
+                </div>
+                <hr>
+                <div class="popup-content">
+                    <p>You have unsaved changes. If you leave without saving, your changes will be lost.</p>
+                </div>
+                <div class="popup-buttons">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="ok-button">Ok</button>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <!--Left panel begins-->
+            <div class="pane left">
+              <div class="button1"><button id="fileopener">Open File(s)</button></div>
+              <div class="containerStyle1">
+                <fieldset>
+                    <legend>Imported Files</legend>
+                    <div id="selectalldiv">
+                        <input type="checkbox" id="selectall"/>
+                        <label class="checkbox" for="selectall">Select All</label>
+                      </div>
+                    <ul class="checkbox-container" id="importedlist">
+                        <li>
+                            <input type="checkbox" id="apple"/>
+                            <label class="checkbox" for="apple">gola</label>
+                        </li>
+                        <hr>
+                        <li>
+                            <input type="checkbox" id="apples"/>
+                            <label class="checkbox" for="apples">gola</label>
+                        </li>
+                        <hr>
+                        <li>
+                            <input type="checkbox" id="appled"/>
+                            <label class="checkbox" for="appled">gola</label>
+                        </li>
+                        
+                    </ul>
+                </fieldset>
+              </div>
+              <div class="containerStyle1">
+                <fieldset>
+                    <legend>Queue</legend>
+                    <ul class="checkbox-container" id="queuelist">
+                        
+                    </ul>
+                </fieldset>
+              </div>
+              <div class="currently-processing">
+
+             </div>
+            <br>
+              <div class="left-footer">
+
+                <div class="selectcount">
+                    Selected Items: <div id="selectedCount">0</div>
+                </div>
+                <button id="startTranscribing">Start Transcribing</button>
+              </div>
+            </div>
+            <!--Right Panel begins-->
+            <div class="pane right" id="main-right-panel">
+                
+                <div class="search-box">
+                    <i class="fa-solid fa-file-audio"></i>
+                    <input type="text" placeholder="Search for audio...">
+                    <button class="fa-solid fa-magnifying-glass generic-button"></button>
+                </div>
+                <div class="add-csv-box">
+                    Add CSV manually
+                    <button id="add-csv-manually-button">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <ul id="processedlist">
+                    
+                </ul>
+                <div id="myNav" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="overlay-content" id="results-overlay-content">
+                        <!--
+
+                            Results Panel
+
+
+                        -->
+
+
+
+
+
+
+
+
+                        <!--
+
+
+                            Results Panel End
+
+
+                        -->
+                    </div>
+                </div>
+                  
+                  <div class="gutter"></div>
+            </div>
+        </div>
+        <script src="jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="fileprocess.js"></script>
+        <script src="transcribedlist.js"></script>
+        <script src="audioplayer.js" defer></script>
+        <script src="dataeditor.js"></script>
+        <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+    </body>
+</html>
