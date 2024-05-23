@@ -43,6 +43,12 @@
     place-items: center;
     cursor: pointer;
   }
+
+  #play-full-audio{
+    float: right;
+    color: #813232;
+    margin-right: 16px;
+  }
   
   .action:is(:hover) {
     color: var(--green);

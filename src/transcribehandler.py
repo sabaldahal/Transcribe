@@ -21,7 +21,7 @@ def transcribe(path):
     columns = ["type","word","start","end","confidence"]
 
 
-    with open(f"{path}.json", "r") as file:
+    with open(f"{new_path}.json", "r") as file:
         df = pd.DataFrame(columns=columns)
         transcript = json.load(file)
         df.loc[len(df.index)] = [

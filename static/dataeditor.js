@@ -102,11 +102,38 @@ const PopulateSegmentList = () =>{
     }
 }
 
+const AddSegmentRowToTable = (tablebody, segId)=>{
+    let segrow = tablebody.insertRow();
+    let segment = SegmentList.find(seg => seg.id == segId);
+    segrow.style.backgroundColor = "#a6a6a6";
+
+    segrow.setAttribute('data-id', segment.id);
+    segrow.setAttribute('data-starttime', segment.starttime);
+    segrow.setAttribute('data-endtime', segment.endtime);
+    segrow.setAttribute('data-segmentplay', false);
+
+    let cell_confidence = segrow.insertCell();
+    let cell_controls = segrow.insertCell();
+    let cell_playbutton = segrow.insertCell();
+    let cell_data = segrow.insertCell();
+
+    cell_confidence.textContent = "--";
+    cell_controls.textContent = "--";
+    cell_playbutton.innerHTML = `
+    <button id="play" class="action" data-start=${segment.starttime} data-end=${segment.endtime}>
+    <i class="fa-solid fa-circle-play"></i>
+    </button>
+                `;
+
+    cell_data.textContent = segment.segment;
+}
+
 function AddCSVToTable() {
     var tableBody = document.querySelector("#data-editor-table tbody");
     tableBody.innerHTML = '';
     var rows = csvString.split('\n');
     TableData = [];
+    var previousAddedSegmentID = -1;
 
     for(let i=0; i<rows.length; i++){
         var columns = rows[i].split('\t');
@@ -120,33 +147,40 @@ function AddCSVToTable() {
 
         var cf_val = parseFloat(columns[5]);
         if(cf_val <= confidenceThreshold){
+                let currentSegmentID = getSegmentIdFromWordId(id);
+                if(!(currentSegmentID == previousAddedSegmentID)){ //add segment if it has not been added before
+                    previousAddedSegmentID = currentSegmentID;
+                    AddSegmentRowToTable(tableBody, currentSegmentID);
+                }
+
                 var newRow = tableBody.insertRow();
                 newRow.setAttribute('data-id', id);
                 newRow.setAttribute('data-starttime', starttime);
                 newRow.setAttribute('data-endtime', endtime);
                 newRow.setAttribute('data-segmentplay', false);
 
-                var cell1 = newRow.insertCell();
-                var cell2 = newRow.insertCell();
-                var cell3 = newRow.insertCell();
-                var cell4 = newRow.insertCell();
+                var cell_confidence = newRow.insertCell();
+                var cell_controls = newRow.insertCell();
+                var cell_playbutton = newRow.insertCell();
+                var cell_data = newRow.insertCell();
+
         
                 // Set the content of the cells to the extracted columns
-                cell1.textContent = cf_val;
-                cell3.textContent = word;
-                cell3.contentEditable = true;
+                cell_confidence.textContent = cf_val;
+                cell_data.textContent = word;
+                cell_data.contentEditable = true;
                 var divElement = document.createElement('div');
                     divElement.className = 'data-more-context';
                     divElement.innerHTML = `
                             <i class="fa-solid fa-toggle-off" id="data-show-segment-audio" title="Switch Audio to segment"></i>
                             <i class="fa-solid fa-circle-info" id="data-show-segment" title="Display Current Segment">
-                                <span class="popuptext" id="data-show-segment--popup">A Simple Popup!</span>
+                                <span class="popuptext" id="data-show-segment--popup">Segment Popup</span>
                             </i>
                             
                    `
-                cell4.appendChild(divElement);
+                cell_controls.appendChild(divElement);
 
-                cell3.addEventListener('input', (e)=>{
+                cell_data.addEventListener('input', (e)=>{
                     unsavedChanges = true;
                     let cell = e.target.closest('td');
                     let row = e.target.closest('tr');
@@ -157,7 +191,7 @@ function AddCSVToTable() {
                     datainTable.edited = true;
                 })
                 
-                let showContextData = cell4.querySelector('#data-show-segment');
+                let showContextData = cell_controls.querySelector('#data-show-segment');
                 let showContextDataPopup = showContextData.querySelector("#data-show-segment--popup");
                 showContextDataPopup.addEventListener('click', (e)=>{
                     e.stopPropagation();
@@ -175,7 +209,7 @@ function AddCSVToTable() {
                     popup.classList.toggle("show");
                 });
 
-                let toggleSegmentAudio = cell4.querySelector('#data-show-segment-audio');
+                let toggleSegmentAudio = cell_controls.querySelector('#data-show-segment-audio');
                 toggleSegmentAudio.addEventListener('click', (e)=>{
                     let ele = e.target;
                     let cell = e.target.closest('td');
@@ -197,7 +231,7 @@ function AddCSVToTable() {
 
 
     
-                cell2.innerHTML = `
+                cell_playbutton.innerHTML = `
                         <button id="play" class="action" data-start=${starttime} data-end=${endtime}>
                         <i class="fa-solid fa-circle-play"></i>
                         </button>
@@ -236,9 +270,9 @@ const LoadDataIntoTable = async (filename) =>{
     CSVFilePath = csvFile;
     var csvdata = await eel.getCSVFileContents(csvFile)();
     csvString = csvdata;
-    AddCSVToTable();
     SegmentList = [];
     PopulateSegmentList();
+    AddCSVToTable();
 }
 
 const ExportData = ()=>{

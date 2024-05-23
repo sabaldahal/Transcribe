@@ -1,4 +1,5 @@
 <div class="audio-player-panel">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="music__container">
     <audio id="audio"></audio>
     <h2 class="music__title">Audio Title</h2>
@@ -7,6 +8,10 @@
         <div class="progress"></div>
       </div>
       <button id="play" class="action">
+        <i class="fa-solid fa-circle-play"></i>
+      </button>
+
+      <button id="play-full-audio" class="action" title="Play Full Audio">
         <i class="fa-solid fa-circle-play"></i>
       </button>
       <small style="float: left; position: relative; left: 15px;" class="start-time">0:00</small>
@@ -19,6 +24,7 @@
       <input type="number" id="threshold-conf-val" name="threshold-conf-val" min="0" max="1" value="0.65" step="0.05">
       <input type="submit" id="submit-threshold-value" value="Reload Table">
     </form>
+    <button id="export-btn" class="btn btn-primary">Export Data</button>
   </div>
 </div>
 
@@ -27,9 +33,9 @@
     <thead>
       <tr>
         <th class="confidence-column">Confidence</th>
-        <th class="audio-column">Audio</th>
-        <th>Word</th>
         <th class="controls-column">Controls</th>
+        <th class="audio-column">Audio</th>       
+        <th>Word</th>       
       </tr>
     </thead>
     <tbody>
@@ -44,5 +50,5 @@
   </table>
 </div>
 
-<button id="export-btn" class="btn btn-primary">Export Data</button>
+
 </div>

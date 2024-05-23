@@ -93,6 +93,7 @@ const LoadAudioPlayer = (src) => {
         // Music Player
         musicPlayer = document.querySelector('.music__player');
         playBtn = document.querySelector('#play');
+        playFullAudioBtn = document.querySelector('#play-full-audio');
         audio = document.querySelector('#audio');
         audio.src = src;
         start_time = document.querySelector('.start-time');
@@ -109,6 +110,17 @@ const LoadAudioPlayer = (src) => {
         /// / EVENT LISTENERS ////
         playBtn.addEventListener('click', () => {
             isAudioPlaying() ? pauseAudio() : playAudio();
+        });
+
+        playFullAudioBtn.addEventListener('click', () => {
+            if(isAudioPlaying()){
+                pauseAudio();
+            }{
+                updateAudioCurrentTime(0.00);
+                updateInitialTime(0.00);
+                upddateTotalDuration(audio.duration);
+                playAudio();
+            }
         });
 
 

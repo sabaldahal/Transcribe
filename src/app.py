@@ -12,5 +12,5 @@ APP_NAME = "eel proto"
 eel.init('./static', allowed_extensions=['.js', '.html'])
 
 #eel.start('index.html')
-eel.start('index.html')   # Start (this blocks and enters loop)
+eel.start('index.html', mode="user selection")   # Start (this blocks and enters loop)
 
