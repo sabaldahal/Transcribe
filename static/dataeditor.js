@@ -306,6 +306,25 @@ const changeFileExtension = (filename, extension)=>{
     return filename;
 }
 
+function addRow(confidence = '', audio = '', word = '') {
+    const tableBody = document.getElementById('transcriptionTableBody');
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+      <td><input type="text" value="${confidence}" /></td>
+      <td class="controls-column"><button onclick="removeRow(this)">Remove</button></td>
+      <td>${audio}</td>
+      <td contenteditable="true">${word}</td>
+    `;
+
+    tableBody.appendChild(row);
+  }
+
+  function removeRow(button) {
+    const row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
+
 
 
 
